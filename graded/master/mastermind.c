@@ -31,13 +31,17 @@ int game()
 	}
 	printf("\n");
 
+	target[0] = 5;
+	target[1] = 8;
+	target[2] = 9;
+	target[3] = 8;
+
 	while(red != 4)
 	{
 		red=0;
 		white=0;
 		userInput(guess);
 
-		
 		// Loop
 		for(int i = 0; i < 4;i++)       // 0,1,2,3
 		{
@@ -45,25 +49,25 @@ int game()
 			{
 				printf("Red found!\n");
 				red +=1;
-				printf("Skippping. i : %d ",i);
 				continue;
 			}
-			for(int p = 3; p >= 0; p--) // 3,2,1,0
+			for(int p = 3; p >= i; p--) // 3,2,1,0
 			{
 				//printf("i: %d    p: %d\n",i,p);
 				if(guess[i] == target[p])
 				{
 					white +=1;
-					printf("White found!\n");
+					printf("WHITE found!%d and%d\n",guess[i],target[p]);
 					break;
 				}
 			}
 		}
-
-		printf("%d red, %d white, guess count: %d\n",red,white,count);
 		count +=1;
+
+		printf("%d - %d red, %d white\n",count,red,white);
+		
 	}
-	printf("You've won in %d guesses.",count);
+	printf("You've won in %d guesses.\n",count);
 
 
 	return(0);
@@ -74,12 +78,12 @@ int game()
 void userInput(char* user)
 {
 	printf("Guess a number: ");
-
+	char buffer[MAX];
 	fgets(user,MAX,stdin);
 
 	for(int i = 0; i < 4; i++)
 	{
 		user[i] = user[i] - 48;
 	}
-
+	fgets(buffer,MAX,stdin);
 }
