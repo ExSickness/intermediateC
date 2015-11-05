@@ -12,9 +12,9 @@ int compare(int red, int white,int target[], char guess[]);
 
 int main(void)
 {
-	compGame();
+	//compGame();
 
-	//game();
+	game();
 
 	return(0);
 }
